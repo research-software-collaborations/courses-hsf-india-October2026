@@ -13,7 +13,6 @@ dependencies:
   - clang-tools
   - cxx-compiler
   - dask
-  - dask-awkward
   - datasets
   - distributed
   - graphviz
