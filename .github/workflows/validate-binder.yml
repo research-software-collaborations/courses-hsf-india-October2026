@@ -7,6 +7,7 @@ on:
   pull_request:
     branches: [binder]
     paths: [binder/environment.yml]
+  workflow_dispatch:
 
 jobs:
   solve-conda:
