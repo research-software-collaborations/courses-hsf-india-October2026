@@ -8,11 +8,11 @@ try:
     from numba import cuda
     if cuda.is_available():
         gpu = cuda.get_current_device()
-        print(f"numba CUDA available: {gpu.name}")
+        print(f"GPU: {gpu.name}")
     else:
-        print("numba CUDA not available — running on CPU")
+        print("GPU: none")
 except Exception as e:
-    print(f"numba CUDA check failed: {e}")
+    print(f"GPU: none (error: {e})")
 
 # basic JIT
 @numba.njit

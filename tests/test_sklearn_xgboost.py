@@ -18,6 +18,7 @@ acc = accuracy_score(y, clf.predict(X))
 print(f"sklearn GradientBoosting OK, train accuracy: {acc:.3f}")
 
 # xgboost — try GPU first, fall back to CPU
+xgb_device = "none"
 for device in ("cuda", "cpu"):
     try:
         dtrain = xgb.DMatrix(X, label=y)
@@ -25,9 +26,11 @@ for device in ("cuda", "cpu"):
         booster = xgb.train(params, dtrain, num_boost_round=10, verbose_eval=False)
         preds = (booster.predict(dtrain) > 0.5).astype(int)
         acc = accuracy_score(y, preds)
+        xgb_device = device
         print(f"XGBoost OK on {device}, train accuracy: {acc:.3f}")
         break
     except xgb.core.XGBoostError as e:
         print(f"XGBoost {device} unavailable ({e}), trying CPU")
+print(f"GPU: {'yes (xgboost)' if xgb_device == 'cuda' else 'none'}")
 
 print("PASS: sklearn + xgboost")

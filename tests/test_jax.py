@@ -4,12 +4,11 @@ import jax.numpy as jnp
 print(f"JAX version: {jax.__version__}")
 
 devices = jax.devices()
-print(f"JAX devices: {devices}")
 gpu_devices = [d for d in devices if d.platform == "gpu"]
 if gpu_devices:
-    print(f"GPU available: {gpu_devices}")
+    print(f"GPU: {', '.join(str(d) for d in gpu_devices)}")
 else:
-    print("No GPU detected by JAX — running on CPU")
+    print("GPU: none")
 
 # basic jit op
 @jax.jit

@@ -5,7 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 print(f"transformers version: {transformers.__version__}")
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Using device: {device}")
+print(f"GPU: {torch.cuda.get_device_name(0) if device == 'cuda' else 'none'}")
 
 # load a tiny model (distilbert-base-uncased is ~250MB; use a config-only check
 # to avoid downloading weights in a CI/test context)

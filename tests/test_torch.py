@@ -8,12 +8,11 @@ print(f"PyG version: {torch_geometric.__version__}")
 
 if torch.cuda.is_available():
     n = torch.cuda.device_count()
-    print(f"CUDA available: {n} GPU(s)")
-    for i in range(n):
-        print(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
+    names = ", ".join(torch.cuda.get_device_name(i) for i in range(n))
+    print(f"GPU: {names}")
     device = torch.device("cuda")
 else:
-    print("CUDA not available — running on CPU")
+    print("GPU: none")
     device = torch.device("cpu")
 
 # basic tensor op
