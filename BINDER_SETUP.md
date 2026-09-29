@@ -23,6 +23,7 @@ Combine the conda `dependencies` lists from each source branch, then:
 
 - **Deduplicate** packages that appear in both
 - **JAX ecosystem** (`jax`, `jaxlib`, `optax`, `equinox`, `flax`): always install via **pip** using `jax[cuda13]` (or the matching cuda version) to avoid a jaxlib conflict where conda and pip each install their own copy
+- **PyTorch**: use `pytorch-gpu` from conda-forge for the CUDA-enabled build. Do **not** use the `pytorch` anaconda channel — it is deprecated and stalled at CUDA 12.4
 - **servicex**: install via pip — its `qastle` dependency is not in conda channels
 - **numpy pin** (`numpy<2`): comment out unless you know all packages need it; note which branch it came from
 - Set the **channel** to match the CUDA version: `nvidia/label/cuda-X.Y`
