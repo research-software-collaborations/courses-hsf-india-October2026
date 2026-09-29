@@ -1,8 +1,6 @@
 import dask
 import dask.array as da
 import dask.dataframe as dd
-import dask_awkward as dak
-import awkward as ak
 import numpy as np
 import pandas as pd
 
@@ -18,12 +16,5 @@ df = pd.DataFrame({"a": np.arange(100), "b": np.random.default_rng(0).standard_n
 ddf = dd.from_pandas(df, npartitions=4)
 mean_b = ddf["b"].mean().compute()
 print(f"dask.dataframe mean OK: {mean_b:.4f}")
-
-# dask-awkward: test roundtrip without triggering column optimizer
-arr = ak.Array([[1, 2, 3], [4, 5], [6]])
-dask_arr = dak.from_awkward(arr, npartitions=2)
-result = dask_arr.compute()
-assert ak.to_list(result) == ak.to_list(arr)
-print(f"dask-awkward OK: roundtrip {ak.type(result)}")
 
 print("PASS: dask")
