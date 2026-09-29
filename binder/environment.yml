@@ -3,7 +3,7 @@ channels:
   - nvidia/label/cuda-13.4
   - conda-forge
 dependencies:
-  - python=3.12
+  - python=3.14
   - aiohttp
   - astunparse
   - awkward
