@@ -15,8 +15,6 @@ dependencies:
   - dask-awkward
   - datasets
   - distributed
-  - equinox
-  - flax
   - graphviz
   - grpcio
   - hdf5
@@ -30,7 +28,6 @@ dependencies:
   - numba
   #- numpy<2  # pinned in ml branch; commented out for broader compatibility
   - openssh
-  - optax
   - pandas
   - particle
   - peft
@@ -61,6 +58,9 @@ dependencies:
       - tensorboard
       - jax[cuda13]
       - nvidia-cudnn-cu13
+      - optax
+      - equinox
+      - flax
       - xgboost
       - omnilearned
 
