@@ -22,7 +22,7 @@ print(f"dask.dataframe mean OK: {mean_b:.4f}")
 # dask-awkward
 arr = ak.Array([[1, 2, 3], [4, 5], [6]])
 dask_arr = dak.from_awkward(arr, npartitions=2)
-result = dak.num(dask_arr, axis=1).compute()
-print(f"dask-awkward OK: lengths = {result.tolist()}")
+result = dak.flatten(dask_arr).compute()
+print(f"dask-awkward OK: flattened = {result.tolist()}")
 
 print("PASS: dask")
