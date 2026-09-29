@@ -1,5 +1,6 @@
 name: hsf-india
 channels:
+  - pytorch
   - nvidia/label/cuda-13.2
   - conda-forge
 dependencies:
@@ -25,6 +26,7 @@ dependencies:
   - jupyterlab-mathjax3
   - lz4
   - matplotlib
+  - cuda-nvcc
   - numba
   #- numpy<2  # pinned in ml branch; commented out for broader compatibility
   - openssh
@@ -41,6 +43,7 @@ dependencies:
   - pyshp
   - py-spy
   - pytorch
+  - pytorch-cuda=12.8
   - python-graphviz
   - requests
   - scikit-learn
