@@ -1,0 +1,51 @@
+name: Validate binder environment
+
+on:
+  push:
+    branches: [binder]
+    paths: [binder/environment.yml]
+  pull_request:
+    branches: [binder]
+    paths: [binder/environment.yml]
+  workflow_dispatch:
+
+jobs:
+  solve-conda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          micromamba-version: "2.9.0"
+          # don't install an environment yet — we just want the solver
+          init-shell: bash
+
+      - name: Solve conda packages (dry run)
+        shell: bash -el {0}
+        env:
+          CONDA_OVERRIDE_CUDA: "13.4"
+        run: |
+          micromamba create --dry-run --name validate-env \
+            --file binder/environment.yml \
+            --channel nvidia/label/cuda-13.4 \
+            --channel conda-forge
+
+      - name: Extract pip packages to requirements file
+        run: |
+          python3 - <<'EOF'
+          import yaml, sys
+          with open("binder/environment.yml") as f:
+              env = yaml.safe_load(f)
+          deps = env.get("dependencies", [])
+          pip_pkgs = next(
+              (d["pip"] for d in deps if isinstance(d, dict) and "pip" in d), []
+          )
+          with open("pip-requirements.txt", "w") as out:
+              out.write("\n".join(pip_pkgs) + "\n")
+          print("Pip packages to check:")
+          print("\n".join(pip_pkgs))
+          EOF
+
+      - name: Check pip package availability (dry run)
+        run: pip install --dry-run -r pip-requirements.txt
