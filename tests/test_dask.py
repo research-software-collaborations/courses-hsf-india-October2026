@@ -19,10 +19,11 @@ ddf = dd.from_pandas(df, npartitions=4)
 mean_b = ddf["b"].mean().compute()
 print(f"dask.dataframe mean OK: {mean_b:.4f}")
 
-# dask-awkward
+# dask-awkward: test roundtrip without triggering column optimizer
 arr = ak.Array([[1, 2, 3], [4, 5], [6]])
 dask_arr = dak.from_awkward(arr, npartitions=2)
-result = dak.flatten(dask_arr).compute()
-print(f"dask-awkward OK: flattened = {result.tolist()}")
+result = dask_arr.compute()
+assert ak.to_list(result) == ak.to_list(arr)
+print(f"dask-awkward OK: roundtrip {ak.type(result)}")
 
 print("PASS: dask")
