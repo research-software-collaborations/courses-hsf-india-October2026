@@ -42,7 +42,7 @@ dependencies:
   - pyshp
   - py-spy
   - pytorch
-  - pytorch-cuda=12.8
+  - pytorch-cuda=12.4
   - python-graphviz
   - requests
   - scikit-learn
