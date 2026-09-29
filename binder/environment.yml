@@ -28,7 +28,7 @@ dependencies:
   - lz4
   - matplotlib
   - numba
-  - numpy<2
+  #- numpy<2  # pinned in ml branch; commented out for broader compatibility
   - openssh
   - optax
   - pandas
