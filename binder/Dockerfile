@@ -37,29 +37,25 @@ RUN \
     CONDA_OVERRIDE_CUDA="13.2" micromamba env update --name base -f environment.yml && \
     CONDA_OVERRIDE_CUDA="13.2" micromamba install -y  -c conda-forge \
     jupyterlab openssh notebook vim nano emacs curl wget  && \
-    micromamba clean --all --yes
+    micromamba clean --all --yes && \
+    rm -rf /opt/conda/pkgs /root/.cache \
+    # Optional: trim unused MKL dispatch libs (~170MB). All deletions must be in
+    # this same RUN block — a separate RUN layer cannot shrink what was laid down here.
+    # Check CPU with: grep -o 'avx512f\|avx2' /proc/cpuinfo | sort -u | head -1
+    # Uncomment ONE set:
+    ## AVX2 cluster (older Intel Xeon, many AMD EPYC):
+    #&& rm -f /opt/conda/lib/libmkl_def.so.3 \
+    #         /opt/conda/lib/libmkl_avx512.so.3 \
+    #         /opt/conda/lib/libmkl_avx10.so.3 \
+    ## AVX-512 cluster (Intel Xeon Scalable Gold/Platinum 2017+):
+    #&& rm -f /opt/conda/lib/libmkl_def.so.3 \
+    #         /opt/conda/lib/libmkl_avx2.so.3 \
+    #         /opt/conda/lib/libmkl_avx10.so.3 \
+    && :
 
 RUN micromamba list
 
 USER root
-
-#clean up after conda
-RUN rm -rf /opt/conda/pkgs
-# Optional: trim unused MKL dispatch libs to save ~170MB.
-# Keep only the variant matching your cluster's CPU instruction set.
-# Check with: grep -o 'avx512f\|avx2' /proc/cpuinfo | sort -u | head -1
-# and:        MKL_VERBOSE=1 python -c "import numpy as np; np.dot(np.random.rand(10,10),np.random.rand(10,10))" 2>&1 | head -1
-# Uncomment ONE of the blocks below:
-#
-## AVX2 cluster (e.g. older Intel Xeon, many AMD EPYC):
-#RUN rm -f /opt/conda/lib/libmkl_def.so.3 \
-#          /opt/conda/lib/libmkl_avx512.so.3 \
-#          /opt/conda/lib/libmkl_avx10.so.3
-#
-## AVX-512 cluster (Intel Xeon Scalable Gold/Platinum 2017+):
-#RUN rm -f /opt/conda/lib/libmkl_def.so.3 \
-#          /opt/conda/lib/libmkl_avx2.so.3 \
-#          /opt/conda/lib/libmkl_avx10.so.3
 
 RUN ln=`grep -n "exec " /usr/local/bin/_entrypoint.sh | tail -1 | cut -f1 -d:`; \
     sed -i "${ln}igit clone --recurse-submodules https://github.com/research-software-collaborations/courses-hsf-india-October2026" /usr/local/bin/_entrypoint.sh
