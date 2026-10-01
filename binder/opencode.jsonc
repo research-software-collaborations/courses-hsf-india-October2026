@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "nrp/qwen3",
+  "autoshare": false,
+  "agents": {
+    "title": {
+      "model": "nrp/qwen3-small"
+    }
+  },
+  "providers": {
+    "nrp": {
+      "name": "NRP",
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "env": ["NRP_API_KEY"],
+      "settings": {
+        "baseURL": "https://ellm.nrp-nautilus.io/v1"
+      },
+      "models": {
+        "qwen3": { "name": "Qwen3" },
+        "qwen3-small": { "name": "Qwen3 Small" }
+      }
+    }
+  }
+}
