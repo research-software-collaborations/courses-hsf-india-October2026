@@ -9,7 +9,7 @@ dependencies:
   - awkward
   - bash_kernel
   - bitsandbytes
-  - clang-tools
+  - clang-tools=21  # pinned to match llvmlite/numba LLVM version, avoids shipping two libLLVM copies
   - cxx-compiler
   - dask
   - datasets
