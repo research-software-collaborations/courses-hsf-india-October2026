@@ -20,6 +20,7 @@ dependencies:
   - hepunits
   - hist
   - ipympl
+  - jupyter-vscode-proxy
   - jupyterlab-deck
   - jupyterlab-mathjax3
   - lz4
