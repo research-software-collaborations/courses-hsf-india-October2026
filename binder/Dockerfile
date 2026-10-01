@@ -50,7 +50,7 @@ RUN ln=`grep -n "exec " /usr/local/bin/_entrypoint.sh | tail -1 | cut -f1 -d:`; 
     sed -i "${ln}igit clone --recurse-submodules https://github.com/research-software-collaborations/courses-hsf-india-October2026" /usr/local/bin/_entrypoint.sh
 
 ## install opencode
-RUN curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path && \
+RUN curl -fsSL https://opencode.ai/v2/install | bash -s -- --no-modify-path && \
     mv /root/.opencode/bin/opencode /usr/local/bin/opencode
 
 ## remove the news
