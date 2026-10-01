@@ -14,6 +14,7 @@ dependencies:
   # the same major version that llvmlite requires so they share one libLLVM.
   # To find the current llvmlite LLVM version: micromamba list | grep llvm
   - clang-tools=21  # must match llvmlite's LLVM major version (llvmlite 0.50 → LLVM 21)
+  - libclang13=21   # clang-tools depends on libclang13; pin to LLVM 21 build or solver picks LLVM 23 → second libLLVM copy
   - cxx-compiler
   - dask
   - datasets
@@ -29,7 +30,7 @@ dependencies:
   - jupyterlab-deck
   - jupyterlab-mathjax3
   - lz4
-  - matplotlib
+  - matplotlib-base  # not matplotlib: the meta-package pulls pyside6 (Qt backend) → libllvm23; ipympl covers interactive use
   - cuda-nvcc
   - numba
   #- numpy<2  # pinned in ml branch; commented out for broader compatibility
