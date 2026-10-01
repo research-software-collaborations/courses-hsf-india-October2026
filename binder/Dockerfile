@@ -51,7 +51,7 @@ RUN ln=`grep -n "exec " /usr/local/bin/_entrypoint.sh | tail -1 | cut -f1 -d:`; 
 
 ## install opencode
 RUN curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path && \
-    mv /root/.local/bin/opencode /usr/local/bin/opencode
+    mv /root/.opencode/bin/opencode /usr/local/bin/opencode
 
 ## remove the news
 COPY binder/overrides.json /tmp
