@@ -38,7 +38,7 @@ RUN \
     CONDA_OVERRIDE_CUDA="13.2" micromamba install -y  -c conda-forge \
     jupyterlab openssh notebook vim nano emacs curl wget  && \
     micromamba clean --all --yes && \
-    rm -rf /opt/conda/pkgs /root/.cache \
+    rm -rf /opt/conda/pkgs ~/.cache \
     # Optional: trim unused MKL dispatch libs (~170MB). All deletions must be in
     # this same RUN block — a separate RUN layer cannot shrink what was laid down here.
     # Check CPU with: grep -o 'avx512f\|avx2' /proc/cpuinfo | sort -u | head -1
