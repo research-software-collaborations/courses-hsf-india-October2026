@@ -9,7 +9,11 @@ dependencies:
   - awkward
   - bash_kernel
   - bitsandbytes
-  - clang-tools=21  # pinned to match llvmlite/numba LLVM version, avoids shipping two libLLVM copies
+  # clang-tools and numba/llvmlite both depend on LLVM. Without a version pin,
+  # conda installs two separate libLLVM copies (~200MB each). Pin clang-tools to
+  # the same major version that llvmlite requires so they share one libLLVM.
+  # To find the current llvmlite LLVM version: micromamba list | grep llvm
+  - clang-tools=21  # must match llvmlite's LLVM major version (llvmlite 0.50 → LLVM 21)
   - cxx-compiler
   - dask
   - datasets
