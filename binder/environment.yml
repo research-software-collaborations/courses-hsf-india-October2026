@@ -66,6 +66,7 @@ dependencies:
       - nvidia-cudnn-cu13
       - optax
       - equinox
+      - dm-haiku
       - flax
       - xgboost
       - omnilearned
