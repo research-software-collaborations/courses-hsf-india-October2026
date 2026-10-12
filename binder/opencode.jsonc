@@ -17,7 +17,9 @@
       },
       "models": {
         "qwen3": { "name": "Qwen3" },
-        "qwen3-small": { "name": "Qwen3 Small" }
+        "qwen3-small": { "name": "Qwen3 Small" },
+        "glm-5.2": { "name": "GLM 5.2" },
+        "deepseek-v4": { "name": "DeepSeek V4" }
       }
     }
   }
