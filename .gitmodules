@@ -1,5 +1,5 @@
-[submodule "2026-10-12-hsf-india-tutorial-delhi"]
-	path = 2026-10-12-hsf-india-tutorial-delhi
+[submodule "ScientificPython"]
+	path = ScientificPython
 	url = ../../henryiii/2026-10-12-hsf-india-tutorial-delhi
 [submodule "courses-hsf-india-October2026"]
 	path = courses-hsf-india-October2026
