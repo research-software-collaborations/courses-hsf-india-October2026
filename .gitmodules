@@ -4,3 +4,6 @@
 [submodule "courses-hsf-india-October2026"]
 	path = courses-hsf-india-October2026
 	url = ../../gordonwatts/courses-hsf-india-October2026
+[submodule "hsf-india-agents"]
+	path = hsf-india-agents
+	url = ../../andrzejnovak/hsf-india-agents
