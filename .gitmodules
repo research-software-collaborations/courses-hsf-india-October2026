@@ -1,8 +1,8 @@
 [submodule "ScientificPython"]
 	path = ScientificPython
 	url = ../../henryiii/2026-10-12-hsf-india-tutorial-delhi
-[submodule "courses-hsf-india-October2026"]
-	path = courses-hsf-india-October2026
+[submodule "MachineLearning"]
+	path = MachineLearning
 	url = ../../gordonwatts/courses-hsf-india-October2026
 [submodule "hsf-india-agents"]
 	path = hsf-india-agents
