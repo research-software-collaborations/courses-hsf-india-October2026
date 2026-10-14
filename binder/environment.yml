@@ -27,6 +27,7 @@ dependencies:
   - ipympl
   - code-server
   - jupyter-vscode-proxy
+  - jupyterhub #needed for correct oauth behavior 
   - jupyterlab-deck
   - jupyterlab-mathjax3
   - lz4
