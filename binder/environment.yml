@@ -23,7 +23,6 @@ dependencies:
   - graphviz
   - grpcio
   - hdf5
-  - coffea
   - hepunits
   - hist
   - ipympl
