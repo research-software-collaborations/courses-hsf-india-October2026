@@ -4,6 +4,12 @@ ENV SHELL /bin/bash
 ARG NEW_MAMBA_USER=jovyan
 ARG NEW_MAMBA_USER_ID=1000
 ARG NEW_MAMBA_USER_GID=57440
+ARG WORKSHOP_NAME=mandi26
+ENV WORKSHOP_NAME=$WORKSHOP_NAME
+ARG COURSE_REPO=https://github.com/research-software-collaborations/courses-hsf-india-October2026
+ENV COURSE_REPO=$COURSE_REPO
+ARG COURSE_BRANCH=main
+ENV COURSE_BRANCH=$COURSE_BRANCH
 
 USER root
 
@@ -57,8 +63,11 @@ RUN micromamba list
 
 USER root
 
+COPY binder/setup-work-dir.sh /usr/local/bin/setup-work-dir.sh
+RUN chmod +x /usr/local/bin/setup-work-dir.sh
+
 RUN ln=`grep -n "exec " /usr/local/bin/_entrypoint.sh | tail -1 | cut -f1 -d:`; \
-    sed -i "${ln}igit clone --recurse-submodules https://github.com/research-software-collaborations/courses-hsf-india-October2026" /usr/local/bin/_entrypoint.sh
+    sed -i "${ln}i/usr/local/bin/setup-work-dir.sh" /usr/local/bin/_entrypoint.sh
 
 ## install opencode
 RUN curl -fsSL https://opencode.ai/v2/install | bash -s -- --no-modify-path && \
