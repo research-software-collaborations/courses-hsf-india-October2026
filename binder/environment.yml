@@ -23,7 +23,6 @@ dependencies:
   - graphviz
   - grpcio
   - hdf5
-  - coffea
   - hepunits
   - hist
   - ipympl
@@ -74,6 +73,7 @@ dependencies:
       - xgboost
       - omnilearned
       - servicex
+      - nbgitpuller
 
 variables:
   LD_LIBRARY_PATH: "'$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/'"
