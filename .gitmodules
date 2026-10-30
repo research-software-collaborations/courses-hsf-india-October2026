@@ -1,9 +1,0 @@
-[submodule "ScientificPython"]
-	path = ScientificPython
-	url = ../../henryiii/2026-10-12-hsf-india-tutorial-delhi
-[submodule "MachineLearning"]
-	path = MachineLearning
-	url = ../../gordonwatts/courses-hsf-india-October2026
-[submodule "hsf-india-agents"]
-	path = hsf-india-agents
-	url = ../../andrzejnovak/hsf-india-agents
