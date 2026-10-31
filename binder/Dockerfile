@@ -8,7 +8,7 @@ ARG WORKSHOP_NAME=mandi26
 ENV WORKSHOP_NAME=$WORKSHOP_NAME
 ARG COURSE_REPO=https://github.com/research-software-collaborations/courses-hsf-india-October2026
 ENV COURSE_REPO=$COURSE_REPO
-ARG COURSE_BRANCH=main
+ARG COURSE_BRANCH=mandi
 ENV COURSE_BRANCH=$COURSE_BRANCH
 
 USER root
