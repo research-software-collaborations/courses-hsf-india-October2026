@@ -1,0 +1,94 @@
+[workspace]
+name = "hsf-india"
+channels = ["conda-forge"]
+# Declare __cuda so the solve does not depend on the machine it is run on.
+platforms = [{ platform = "linux-64", cuda = "13" }]
+
+[dependencies]
+python = "3.13.*"
+aiohttp = "*"
+astunparse = "*"
+awkward = "*"
+bash_kernel = "*"
+clang-tools = "*"
+code-server = "*"
+coffea = "*"
+cudnn = "*"
+cuda-nvcc = "*"
+curl = "*"
+cxx-compiler = "*"
+dask = "*"
+# Imported by tests/test_dask.py. Current releases require dask 2025.3, which holds back
+# dask and distributed. Older builds have no dask upper bound, so without this lower bound
+# the solver pairs dask-awkward 2025.3.0 with a much newer dask.
+dask-awkward = ">=2026"
+datasets = "*"
+distributed = "*"
+dm-haiku = "*"
+emacs = "*"
+equinox = "*"
+flax = "*"
+fsspec-xrootd = "*" # root:// file access for coffea and uproot
+git = "*"
+graphviz = "*"
+grpcio = "*"
+h5py = "*"
+hdf5 = "*"
+hepunits = "*"
+hist = "*"
+ipympl = "*"
+jax = "*"
+jaxlib = { version = "*", build = "cuda*" }
+jupyter-vscode-proxy = "*"
+jupyterhub = "*" # needed for correct oauth behavior
+jupyterlab = "*"
+jupyterlab-deck = "*"
+jupyterlab-mathjax3 = "*"
+file = "*" # not provided by the base image
+less = "*" # pager for git, as the base image only provides more
+lz4 = "*"
+matplotlib-base = "*" # not matplotlib: the meta-package adds the pyside6 Qt backend, which a headless container does not need; ipympl covers interactive use
+nano = "*"
+nbgitpuller = "*"
+notebook = "*"
+numba = "*"
+openssh = "*"
+optax = "*"
+pandas = "*"
+particle = "*"
+peft = "*"
+pint = "*"
+pip = "*"
+polars = "*"
+py-spy = "*"
+py-xgboost = { version = "*", build = "cuda*" }
+pyarrow = "*"
+pybind11 = "*"
+pyhf = "*"
+pympler = "*"
+pyshp = "*"
+python-graphviz = "*"
+pytorch-gpu = "*"
+pytorch_geometric = "*"
+requests = "*"
+scikit-learn = "*"
+scipy = "*"
+servicex = "*"
+tensorboard = "*"
+torchvision = "*"
+transformers = "*"
+trl = "*"
+uproot = "*"
+vector = "*"
+vim = "*"
+wget = "*"
+# Conda dependencies of omnilearned, so that they do not get installed from PyPI
+diffusers = "*"
+einops = "*"
+tqdm = "*"
+typer = "*"
+
+[pypi-dependencies]
+# omnilearned is not on conda-forge. It brings in pytorch-optimizer (not on
+# conda-forge) and torchdiffeq>=0.2.5 (conda-forge only has 0.2.2) from PyPI.
+omnilearned = "*"
