@@ -8,7 +8,7 @@ dependencies:
   - astunparse
   - awkward
   - bash_kernel
-  - bitsandbytes
+  #- bitsandbytes
   # clang-tools and numba/llvmlite both depend on LLVM. Without a version pin,
   # conda installs two separate libLLVM copies (~200MB each). Pin clang-tools to
   # the same major version that llvmlite requires so they share one libLLVM.
