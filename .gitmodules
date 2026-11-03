@@ -1,3 +1,6 @@
 [submodule "hsf-india-mandi-scientific-python"]
 	path = hsf-india-mandi-scientific-python
 	url = ../../MoAly98/hsf-india-mandi-scientific-python
+[submodule "ML_Mandi"]
+	path = ML_Mandi
+	url = ../../rafaellopesdesa/ML_Mandi
